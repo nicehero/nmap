@@ -98,6 +98,21 @@ namespace nicehero{
 	};
 	
 	template <class K, template<typename, typename> class BaseMap>
+	class nmap<K, char, BaseMap> 
+		: public BaseMap<K,char> 
+	{
+		using V = char;
+	public:
+		V get(const K& k, V rDefault = 0) const {
+			auto it = BaseMap<K, V>::find(k);
+			if (it == BaseMap<K, V>::end()) {
+				return rDefault;
+			}
+			return it->second;
+		}
+	};
+	
+	template <class K, template<typename, typename> class BaseMap>
 	class nmap<K, ui16, BaseMap> 
 		: public BaseMap<K,ui16> 
 	{
