@@ -42,6 +42,7 @@ int main(){
 
 	auto r3b = std::move(r1b);
 	auto r4b = std::move(r2b);
+	//auto r5b = r4b; //error smart_ref::copy_constructor = delete
 	
 	nmap<int, std::string> mmc;
 	mmc[1] = "abc";
@@ -56,6 +57,7 @@ int main(){
 	mmd[1].b = 51;
 	auto r1d = mmd.get(1);
 	auto r2d = mmd.get(2);
+	//auto r3d = mmd.get(2,S2()); // error if V::copy_constructor==delete
 	printf("%p\n", r1d);
 	if (r1d){
 		printf("%d,%d\n", r1d->a,r1d->b);
